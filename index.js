@@ -9,6 +9,10 @@ const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioClient = twilio(accountSid, authToken);
 
+app.get('/', (req, res) => {
+  res.send('Welcome to Westwood Couriers Middleman Server!');
+});
+
 app.post('/send-notification', async (req, res) => {
   const { to, message } = req.body;
 
@@ -25,6 +29,8 @@ app.post('/send-notification', async (req, res) => {
     res.status(500).json({ success: false, error: error.message });
   }
 });
+
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
